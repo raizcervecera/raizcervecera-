@@ -1,30 +1,16 @@
-# Raíz Cervecera — Sitio estático (GitHub Pages)
+# Raíz Cervecera — sitio multi‑página
 
-- Branding oscuro + logo.
-- Menú (Inicio, Cervezas, Origen, Contacto).
-- **Imagen de portada** en el hero.
-- **Cervezas** desde `cervezas.json`.
-- **Origen** con texto real.
-- **Contacto** con **Formspree** y **scroll suave**.
-- Footer con **redes sociales**.
+Se generaron páginas independientes, enlazadas desde el menú:
+- `index.html` → Inicio
+- `cervezas.html` → Cervezas
+- `origen.html` → Origen
+- `contacto.html` → Contacto
+- `admin.html` → Admin (proteger con Netlify Identity / rol `admin`)
 
-## Publicación
-1. Sube todo a la **raíz** del repo `raizcervecera/raizcervecera`:
-   `index.html`, `styles.css`, `cervezas.json`, `scripts/main.js`, `assets/logo.jpg`, `assets/icon-instagram.svg`, `assets/icon-facebook.svg`, `README.md`.
-2. **Settings → Pages**: *Deploy from a branch*, `main` y **/ (root)**.
-3. Visita: `https://raizcervecera.github.io/raizcervecera/`.
+### Cómo publicar
+- GitHub Pages o Netlify: sube todos los archivos a la **raíz** del repo.
+- Para **Netlify Identity + RBAC**: ajusta `netlify.toml` y asigna rol `admin` a tu usuario.
 
-## Formspree
-- Reemplaza `TU_ID_FORMSPREE` en `index.html` por tu ID real (`f/xxxxx`).
-
-## Desarrollo local
-```bash
-python -m http.server 8080
-# Abre http://localhost:8080/
-```
-
-
-## Administración (demo)
-- Inicio de sesión local NO es seguro para producción. Usa Netlify Identity, Firebase Auth o Supabase Auth.
-- Usuario por defecto: `admin@raizcervecera.cl`
-- Contraseña por defecto: `raiz-admin-2025` (puedes cambiar el hash en `scripts/main.js`).
+### Notas
+- El menú vincula a cada archivo `.html`.
+- En `contacto.html` el formulario usa Formspree (reemplaza `TU_ID_FORMSPREE`).

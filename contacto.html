@@ -1,6 +1,6 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Inicio — Raíz Cervecera</title>
+<title>Contacto — Raíz Cervecera</title>
 <meta name="theme-color" content="#0b0b0b" />
 <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
 <link rel="stylesheet" href="styles.css" />
@@ -24,7 +24,7 @@
     </ul>
   </nav>
 </header>
-<main><section class="hero"><div class="hero-inner"><img class="hero-image" src="assets/logo.jpg" alt="Raíz Cervecera — Logo" /><h1>Desde la raíz, cerveza de verdad</h1><p>Pequeños lotes, gran carácter. Ingredientes locales y procesos cuidados.</p></div></section></main><footer class="site-footer" aria-label="Pie de página">
+<main><section class="section" aria-label="Contacto"><div class="section-content"><h2>Contacto</h2><p>¿Quieres distribuir, visitar, colaborar o simplemente saludar? Escríbenos.</p><form id="contact-form" class="contact-form" method="POST" action="https://formspree.io/f/TU_ID_FORMSPREE" novalidate><div class="form-row"><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" required placeholder="Tu nombre" /></div><div class="form-row"><label for="email">Email</label><input id="email" name="email" type="email" required placeholder="tu@correo.com" /></div><div class="form-row"><label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" rows="4" required placeholder="Cuéntanos"></textarea></div><input type="hidden" name="origen" value="sitio-web" /><div class="form-actions"><button type="submit" class="btn">Enviar</button><p id="form-status" role="status" aria-live="polite"></p></div></form></div></section></main><script>const form=document.getElementById("contact-form");const statusEl=document.getElementById("form-status");if(form){form.addEventListener("submit",async(ev)=>{ev.preventDefault();const data=new FormData(form);try{const res=await fetch(form.action,{method:"POST",body:data,headers:{"Accept":"application/json"}});if(res.ok){statusEl.textContent="¡Gracias!";statusEl.style.color="#d8a63a";form.reset();}else{const err=await res.json();statusEl.textContent=(err.errors?err.errors.map(e=>e.message).join(" · "):"No se pudo enviar");statusEl.style.color="#ff6b6b";}}catch(e){statusEl.textContent="Error de conexión";statusEl.style.color="#ff6b6b";}})}</script><footer class="site-footer" aria-label="Pie de página">
   <div class="footer-inner">
     <p>© <span id="year"></span> Raíz Cervecera · Quilpué, Chile</p>
     <div class="social">
