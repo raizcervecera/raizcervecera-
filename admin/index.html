@@ -3,81 +3,121 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin — Raíz Cervecera (Supabase)</title>
-  <link rel="stylesheet" href="../styles.css" />
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script type="module" src="./supabase-client.js"></script>
+  <title>Administración — Raíz Cervecera</title>
+  <meta name="description" content="Panel de administración para gestión de usuarios (crear, deshabilitar, eliminar)." />
+  <link rel="icon" href="assets/img/logo.png" type="image/png" />
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --card: #121212;
+      --text: #f4f4f5;
+      --muted: #c3c3c3;
+      --border: #232323;
+      --accent: #14b8a6;
+      --danger: #ef4444;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:var(--bg); color:var(--text);}
+    header{display:flex;align-items:center;gap:.8rem;padding:.75rem 1rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:#0b0b0b;z-index:50}
+    header img{width:40px;height:auto}
+    header .brand{font-weight:700}
+    main{max-width:1100px;margin:0 auto;padding:1.25rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem}
+    .card h2{margin:.2rem 0 .8rem}
+    label{display:block;font-size:.9rem;color:var(--muted);margin:.4rem 0 .2rem}
+    input,select{width:100%;padding:.55rem .6rem;border-radius:8px;border:1px solid var(--border);background:#0f0f0f;color:var(--text)}
+    button{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem .8rem;border:1px solid var(--border);border-radius:8px;background:#111;color:var(--text);cursor:pointer}
+    button.primary{background:var(--accent);border-color:transparent;color:#001514;font-weight:600}
+    button.danger{background:var(--danger);border-color:transparent;color:#fff;font-weight:600}
+    .row{display:flex;gap:.5rem;flex-wrap:wrap}
+    .mt{margin-top:.8rem}
+    .muted{color:var(--muted)}
+    .hidden{display:none}
+    .status{margin-top:.6rem;font-size:.9rem}
+    .table{width:100%;border-collapse:collapse;margin-top:.8rem}
+    .table th,.table td{border:1px solid var(--border);padding:.5rem;text-align:left}
+    .table th{color:var(--muted);font-weight:600}
+    .login{max-width:420px;margin:6vh auto;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem}
+    .login h1{margin-top:0}
+  </style>
+  <script defer src="/assets/js/admin.js"></script>
 </head>
 <body>
-  <header class="site-header" role="banner">
-  <a class="brand" href="../index.html">
-    <img src="../assets/logo.jpg" alt="Logo Raíz Cervecera" />
-    <span>Raíz Cervecera</span>
-  </a>
-  <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Abrir menú">☰</button>
-  <nav id="site-nav" class="site-nav" aria-label="Navegación principal">
-    <ul>
-      <li><a href="../index.html">Inicio</a></li>
-      <li><a href="../cervezas.html">Cervezas</a></li>
-      <li><a href="../origen.html">Origen</a></li>
-      <li><a href="../contacto.html">Contacto</a></li>
-      <li><a href="./index.html">Admin</a></li>
-    </ul>
-  </nav>
-</header>
-  <main class="section" aria-label="Panel de administración">
-    <div class="section-header">
-      <h2>Panel de Administración</h2>
-      <p class="notice">Acceso restringido por Netlify (rol admin). Acciones persistentes con Supabase (Auth + RLS).</p>
+  <header>
+    <a href="/index.html" aria-label="Inicio"><img src="/assets/img/logo.png" alt="Logo Raíz Cervecera"></a>
+    <span class="brand">Panel de administración</span>
+  </header>
+
+  <!-- Login local (solo para acceso inicial al panel). Recomendado combinar con Netlify Identity roles. -->
+  <section id="local-login" class="login">
+    <h1>Acceso administrador</h1>
+    <p class="muted">Usuario y contraseña locales para ingresar al panel.</p>
+    <label for="adminUser">Usuario</label>
+    <input id="adminUser" autocomplete="username" placeholder="admin" />
+    <label for="adminPass">Contraseña</label>
+    <input id="adminPass" type="password" autocomplete="current-password" placeholder="admin2025" />
+    <div class="row mt">
+      <button class="primary" id="btnLocalLogin">Entrar</button>
+      <a href="/index.html"><button>Volver</button></a>
     </div>
-    <div class="section-content">
-      <div class="grid" style="margin-bottom:1rem">
-        <article class="card">
-          <div class="card-header"><h3 class="card-title">Sesión Supabase</h3></div>
-          <div class="card-body">
-            <div class="form-row">
-              <label>Email</label>
-              <input id="su-email" class="input" type="email" placeholder="admin@raizcervecera.cl" />
-            </div>
-            <div class="form-row">
-              <label>Contraseña</label>
-              <input id="su-pass" class="input" type="password" placeholder="••••••••" />
-            </div>
-            <div class="toolbar">
-              <button class="btn" id="su-login">Login Supabase</button>
-              <button class="btn" id="su-logout">Logout Supabase</button>
-              <span id="su-status" class="notice"></span>
-            </div>
-          </div>
-        </article>
-      </div>
+    <div id="localLoginStatus" class="status"></div>
+  </section>
 
-      <div class="toolbar">
-        <button class="btn" id="btn-load">Cargar catálogo</button>
-        <button class="btn" id="btn-export">Exportar CSV</button>
-      </div>
-
-      <table class="table" id="catalog-table">
-        <thead><tr><th>Nombre</th><th>Estilo</th><th>ABV</th><th>IBU</th><th>Stock</th></tr></thead>
-        <tbody></tbody>
-      </table>
-
-      <h3 style="margin-top:2rem">Alta de producto (requiere rol admin en Supabase)</h3>
-      <form id="quick-add" class="card" style="padding:1rem">
-        <div class="form-row"><label>Nombre</label><input class="input" name="nombre" required></div>
-        <div class="form-row"><label>Estilo</label><input class="input" name="estilo" required></div>
-        <div class="form-row" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem">
-          <div><label>ABV</label><input class="input" name="abv" type="number" step="0.1" required></div>
-          <div><label>IBU</label><input class="input" name="ibu" type="number" step="1" required></div>
-          <div><label>Stock</label><input class="input" name="stock" type="number" step="1" required></div>
+  <main id="adminApp" class="hidden">
+    <p class="muted">Conectado. Las acciones usan funciones serverless en Netlify con token de administrador.</p>
+    <div class="grid">
+      <div class="card">
+        <h2>Crear nuevo usuario</h2>
+        <label>Email</label>
+        <input id="nuEmail" type="email" placeholder="usuario@correo.com" />
+        <label>Contraseña</label>
+        <input id="nuPass" type="password" placeholder="contraseña" />
+        <div class="row mt">
+          <label><input id="nuConfirm" type="checkbox" checked /> Confirmar automáticamente</label>
         </div>
-        <div class="toolbar"><button class="btn" type="submit">Agregar</button></div>
-        <p id="add-status" class="notice" role="status" aria-live="polite"></p>
-      </form>
+        <div class="row mt">
+          <button class="primary" id="btnCreate">Crear</button>
+        </div>
+        <div id="createStatus" class="status"></div>
+      </div>
+
+      <div class="card">
+        <h2>Deshabilitar usuario</h2>
+        <label>ID del usuario</label>
+        <input id="duId" placeholder="uuid del usuario" />
+        <div class="row mt">
+          <button class="primary" id="btnDisable">Deshabilitar</button>
+        </div>
+        <p class="muted">Se marca el rol <code>disabled</code> en app_metadata y se puede usar role-based redirects para bloquear acceso.</p>
+        <div id="disableStatus" class="status"></div>
+      </div>
+
+      <div class="card">
+        <h2>Eliminar usuario</h2>
+        <label>ID del usuario</label>
+        <input id="delId" placeholder="uuid del usuario" />
+        <div class="row mt">
+          <button class="danger" id="btnDelete">Eliminar</button>
+        </div>
+        <div id="deleteStatus" class="status"></div>
+      </div>
+
+      <div class="card">
+        <h2>Buscar / listar usuarios</h2>
+        <label>Filtro por email</label>
+        <input id="luFilter" placeholder="parte de email" />
+        <div class="row mt">
+          <button id="btnList">Buscar</button>
+        </div>
+        <table class="table" id="usersTable">
+          <thead><tr><th>ID</th><th>Email</th><th>Roles</th><th>Creado</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <div id="listStatus" class="status"></div>
+      </div>
     </div>
   </main>
-  <footer class="site-footer">
-  <div class="footer-inner">© <span id="year"></span> Raíz Cervecera · Quilpué, Chile</div>
-</footer>
 </body>
 </html>
