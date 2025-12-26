@@ -22,3 +22,9 @@
 python -m http.server 8080
 # Abre http://localhost:8080/
 ```
+
+
+## Administración (demo)
+- Inicio de sesión local NO es seguro para producción. Usa Netlify Identity, Firebase Auth o Supabase Auth.
+- Usuario por defecto: `admin@raizcervecera.cl`
+- Contraseña por defecto: `raiz-admin-2025` (puedes cambiar el hash en `scripts/main.js`).

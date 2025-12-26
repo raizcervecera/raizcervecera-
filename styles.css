@@ -59,3 +59,6 @@ input:focus,textarea:focus{outline:2px solid var(--brand);border-color:var(--bra
 
 /* Ancla (compensa header fijo) */
 #cervezas,#origen,#contacto{scroll-margin-top:90px}
+
+/* Admin tweaks */
+#admin-cervezas{list-style:disc;padding-left:1.25rem}
