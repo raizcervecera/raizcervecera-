@@ -1,0 +1,30 @@
+[
+  {
+    "nombre": "IPA Raíz",
+    "estilo": "IPA",
+    "abv": 6.2,
+    "ibu": 55,
+    "descripcion": "Lúpulos cítricos y resinosos, amargor firme y final seco."
+  },
+  {
+    "nombre": "Amber del Valle",
+    "estilo": "Amber Ale",
+    "abv": 5.4,
+    "ibu": 28,
+    "descripcion": "Maltas caramelo, leve tostado y equilibrio entre dulzor y amargor."
+  },
+  {
+    "nombre": "Lager Andina",
+    "estilo": "Lager",
+    "abv": 4.8,
+    "ibu": 18,
+    "descripcion": "Fermentación limpia, cuerpo ligero y gran tomabilidad."
+  },
+  {
+    "nombre": "Stout Raíz",
+    "estilo": "Stout",
+    "abv": 5.8,
+    "ibu": 35,
+    "descripcion": "Notas de café y chocolate, espuma cremosa y final redondo."
+  }
+]

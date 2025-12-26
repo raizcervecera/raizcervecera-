@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raíz Cervecera — Cerveza Artesanal</title>
+  <meta name="description" content="Raíz Cervecera: cervezas artesanales con identidad local y carácter definido." />
+  <meta name="theme-color" content="#0b0b0b" />
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <a class="brand" href="#inicio" aria-label="Inicio">
+      <img src="assets/logo.jpg" alt="Logo Raíz Cervecera" />
+      <span>Raíz Cervecera</span>
+    </a>
+    <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Abrir menú">☰</button>
+    <nav id="site-nav" class="site-nav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#cervezas">Cervezas</a></li>
+        <li><a href="#origen">Origen</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero" aria-label="Portada">
+      <div class="hero-inner">
+        <img class="hero-image" src="assets/logo.jpg" alt="Raíz Cervecera — Logo" />
+        <h1>Desde la raíz, cerveza de verdad</h1>
+        <p>Pequeños lotes, gran carácter. Ingredientes locales y procesos cuidados.</p>
+      </div>
+    </section>
+
+    <section id="cervezas" class="section" aria-label="Catálogo de cervezas">
+      <div class="section-header">
+        <h2>Nuestras Cervezas</h2>
+        <p>Selección estable y de temporada, elaboradas en Quilpué, Chile.</p>
+      </div>
+      <div id="cervezas-grid" class="grid"></div>
+    </section>
+
+    <section id="origen" class="section" aria-label="Origen de la cervecería">
+      <div class="section-content">
+        <h2>Nuestro Origen</h2>
+        <p>Raíz Cervecera nace en <strong>Quilpué</strong>, con el propósito de crear cervezas honestas que reflejen nuestro entorno. Creemos que la calidad se construye desde la raíz: agua cuidada, maltas seleccionadas, lúpulos frescos y fermentaciones prolijas.</p>
+        <p>Elaboramos en lotes pequeños para asegurar el carácter de cada estilo. Nuestro foco está en el balance y la expresión de los ingredientes: buscamos aromas limpios, sabores definidos y finales agradables, respetando tiempos y procesos.</p>
+      </div>
+    </section>
+
+    <section id="contacto" class="section" aria-label="Contacto">
+      <div class="section-content">
+        <h2>Contacto</h2>
+        <p>¿Quieres distribuir, visitar, colaborar o simplemente saludar? Escríbenos.</p>
+        <form id="contact-form" class="contact-form" method="POST" action="https://formspree.io/f/TU_ID_FORMSPREE" novalidate>
+          <div class="form-row">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre" />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="tu@correo.com" />
+          </div>
+          <div class="form-row">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Cuéntanos"></textarea>
+          </div>
+          <input type="hidden" name="origen" value="sitio-web" />
+          <div class="form-actions">
+            <button type="submit" class="btn">Enviar</button>
+            <p id="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" aria-label="Pie de página">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> Raíz Cervecera · Quilpué, Chile</p>
+      <div class="social">
+        <a class="social-link" href="https://www.instagram.com/raizcervecera" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="assets/icon-instagram.svg" alt="Instagram" />
+          <span>@raizcervecera</span>
+        </a>
+        <a class="social-link" href="https://www.facebook.com/raizcervecera" target="_blank" rel="noopener" aria-label="Facebook">
+          <img src="assets/icon-facebook.svg" alt="Facebook" />
+          <span>Raíz Cervecera</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
