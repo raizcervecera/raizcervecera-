@@ -1,16 +1,15 @@
-# Raíz Cervecera — sitio multi‑página
+# Raíz Cervecera — Sitio multipágina con RBAC
 
-Se generaron páginas independientes, enlazadas desde el menú:
-- `index.html` → Inicio
-- `cervezas.html` → Cervezas
-- `origen.html` → Origen
-- `contacto.html` → Contacto
-- `admin.html` → Admin (proteger con Netlify Identity / rol `admin`)
+Incluye:
+- index.html (Inicio)
+- cervezas.html
+- origen.html
+- contacto.html (formulario con Formspree)
+- admin/index.html (panel protegido)
+- login.html (pantalla de acceso)
+- netlify.toml (RBAC con rol admin)
 
-### Cómo publicar
-- GitHub Pages o Netlify: sube todos los archivos a la **raíz** del repo.
-- Para **Netlify Identity + RBAC**: ajusta `netlify.toml` y asigna rol `admin` a tu usuario.
-
-### Notas
-- El menú vincula a cada archivo `.html`.
-- En `contacto.html` el formulario usa Formspree (reemplaza `TU_ID_FORMSPREE`).
+## Publicación en Netlify
+1. Conecta el repo y habilita Identity.
+2. Invita a andres.rh78@gmail.com y asigna rol `admin`.
+3. Verifica acceso: /admin/ → 401 sin login, 200 con rol.
