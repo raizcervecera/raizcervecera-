@@ -8,11 +8,11 @@
   <link rel="icon" href="assets/img/logo.png" type="image/png" />
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #222222;
-      --muted: #666666;
-      --border: #e6e6e6;
-      --accent: #0f766e; /* verde profundo */
+      --bg: #000000;   /* Fondo negro */
+      --text: #f5f5f5; /* Texto claro */
+      --muted: #c8c8c8;
+      --border: #222222;
+      --accent: #14b8a6; /* teal para acentos en oscuro */
     }
 
     * { box-sizing: border-box; }
@@ -24,7 +24,7 @@
       line-height: 1.5;
     }
 
-    /* Header */
+    /* Header en oscuro */
     .site-header {
       display: flex;
       align-items: center;
@@ -32,7 +32,8 @@
       gap: 1rem;
       padding: 0.75rem 1rem;
       border-bottom: 1px solid var(--border);
-      background: #fff;
+      background: rgba(0,0,0,0.6); /* semitransparente para sticky */
+      backdrop-filter: blur(4px);
       position: sticky;
       top: 0;
       z-index: 50;
@@ -46,7 +47,7 @@
       color: inherit;
     }
     .brand__logo {
-      width: 44px;
+      width: 48px;
       height: auto;
       display: block;
     }
@@ -58,7 +59,7 @@
 
     /* Nav */
     .site-nav { display: flex; align-items: center; gap: 0.75rem; }
-    .nav__toggle { display: none; }
+    .nav__toggle { display: none; color: var(--text); }
     .nav__list {
       display: flex;
       gap: 1rem;
@@ -71,19 +72,19 @@
       color: var(--text);
       padding: 0.3rem 0.2rem;
     }
-    .site-nav a:hover { color: #000; }
+    .site-nav a:hover { color: #ffffff; }
 
     /* Sección con logo centrado */
     .center-logo {
-      min-height: 55vh;               /* ocupa más pantalla */
+      min-height: 60vh;
       display: grid;
-      place-items: center;            /* centra horizontal y vertical */
-      padding: 2rem 1rem;
+      place-items: center;
+      padding: 2.5rem 1rem;
     }
     .center-logo img {
-      width: clamp(140px, 28vw, 320px); /* tamaño responsivo */
+      width: clamp(160px, 30vw, 360px);
       height: auto;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,.08));
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,.6));
     }
     .center-logo .caption {
       margin-top: 0.75rem;
